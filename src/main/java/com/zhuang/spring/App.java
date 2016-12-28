@@ -4,6 +4,7 @@ import javax.swing.tree.VariableHeightLayoutCache;
 
 import com.zhuang.spring.test.BMWCar;
 import com.zhuang.spring.test.Car;
+import com.zhuang.spring.test.Father;
 import com.zhuang.spring.utils.ApplicationContextUtil;
 
 /**
@@ -14,7 +15,7 @@ public class App
 {
     public static void main( String[] args )
     {
-    	Car car = ApplicationContextUtil.Get4PathXml().getBean("car",BMWCar.class);
-    	car.run();
+    	Father fa = ApplicationContextUtil.GetApplicationContext().getBean("father",Father.class);
+    	fa.driveCar();
     }
 }

@@ -1,13 +1,24 @@
 package com.zhuang.spring.utils;
 
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class ApplicationContextUtil {
 
-	public static ApplicationContext Get4PathXml() {
+	private static ApplicationContext applicationContext;
 	
-		return new ClassPathXmlApplicationContext(new String[]{"spring/applicationContext.xml"});
+	static{
+		
+		if (applicationContext == null) {
+			
+			applicationContext = new ClassPathXmlApplicationContext(new String[]{"spring/applicationContext.xml"});
+		}
+	}
+	
+	public static ApplicationContext GetApplicationContext() {
+	
+		return applicationContext;
 		
 	}
 	
