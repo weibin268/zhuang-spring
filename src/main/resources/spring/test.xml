@@ -4,6 +4,14 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <import resource="classpath*:spring/test.xml"/>
+	<bean id="car" class="com.zhuang.spring.test.BMWCar">
+		
+	</bean>
+
+	<bean id="father" class="com.zhuang.spring.test.Father">
+	
+	<property name="car" ref="car"></property>
+	
+	</bean>
 
 </beans>
