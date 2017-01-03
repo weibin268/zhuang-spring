@@ -14,7 +14,7 @@ public class TestService{
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
-	public void delTest() {
+	public void delTest(){
 
 		Integer integer = jdbcTemplate.queryForObject("select count(*) from sys_autocodedetail",Integer.class);
 	
@@ -22,8 +22,7 @@ public class TestService{
 			
 		jdbcTemplate.execute("delete from sys_autocodedetail");
 		
-		int i=1/0;
-	
+		throw new RuntimeException("11");
 	}
 	
 	
