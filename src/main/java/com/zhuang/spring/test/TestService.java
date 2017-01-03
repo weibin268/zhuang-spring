@@ -23,6 +23,7 @@ public class TestService{
 		jdbcTemplate.execute("delete from sys_autocodedetail");
 		
 		throw new RuntimeException("11");
+	
 	}
 	
 	
