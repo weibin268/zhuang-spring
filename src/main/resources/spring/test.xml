@@ -14,4 +14,8 @@
 	
 	</bean>
 
+	<bean id="testService" class="com.zhuang.spring.test.TestService">
+		<property name="jdbcTemplate" ref="jdbcTemplate"></property>
+	</bean>
+	
 </beans>
