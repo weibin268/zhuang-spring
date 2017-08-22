@@ -18,6 +18,4 @@
 
     <import resource="classpath*:spring/test.xml"/>
 
-    <import resource="classpath*:spring/zhuangData.xml"/>
-
 </beans>
