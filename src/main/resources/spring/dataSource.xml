@@ -14,18 +14,12 @@
 		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.0.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
-	<context:property-placeholder
-		ignore-unresolvable="true" local-override="true"
-		location="classpath*:config/jdbc.properties" />
+	<context:property-placeholder ignore-unresolvable="true" local-override="true" location="classpath*:config/jdbc.properties" />
 
-
-	<util:properties id="JDBC_PROPERTIES" location="classpath:config/jdbc.properties"
-		local-override="true" />
-
+	<util:properties id="JDBC_PROPERTIES" location="classpath:config/jdbc.properties" local-override="true" />
 
 	<!-- 数据源定义,使用Apache DBCP 连接池 -->
-	<bean id="dataSource" name="dataSource"
-		class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+	<bean id="dataSource" name="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="${jdbc.driverClassName}" />
 		<property name="url" value="${jdbc.url}" />
 		<property name="username" value="${jdbc.username}" />
@@ -36,13 +30,13 @@
 		<property name="validationQuery" value="${jdbc.validationQuery}" />
 	</bean>
 
-	<bean id="transactionManager"
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
 	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true" />
 
+	<!--for JdbcTemplate-->
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
@@ -53,13 +47,12 @@
             <tx:method name="del*" propagation="REQUIRED" />  
             <tx:method name="update*" propagation="REQUIRED"/>  
             <tx:method name="get*" propagation="NOT_SUPPORTED" read-only="true" />
-            
-        <!--     <tx:method name="doComplexLogic" propagation="NESTED"
-                isolation="REPEATABLE_READ" timeout="1000" rollback-for="java.lang.Exception"  
-                no-rollback-for="com.mysrc.service.CustomRuntimeException" />  
-         -->
+			<!-- 	
+			<tx:method name="doComplexLogic" propagation="NESTED" isolation="REPEATABLE_READ" timeout="1000" 
+                rollback-for="java.lang.Exception" no-rollback-for="com.mysrc.service.CustomRuntimeException" />
+            -->
         </tx:attributes>
-    </tx:advice>  
+    </tx:advice>
     
     <aop:config>
         <aop:pointcut id="testServicePointcut" expression="execution(* com.zhuang.spring.test.TestService.*(..))" />  
